@@ -10,10 +10,13 @@
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $length = intval($_POST["length"]);
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Caratteri consentiti
+        $charactersLength = strlen($characters);
         $password = "";
 
         for ($i = 0; $i < $length; $i++) {
-            $password .= "X";
+            $randomIndex = rand(0, $charactersLength - 1);
+            $password .= $characters[$randomIndex];
         }
 
         echo "<p>Password generata: $password</p>";
